@@ -361,6 +361,6 @@ Step 4: Element not found. Exit.
 		""")
 
 
-''' Searching algorithms '''
+''' sorting algorithms '''
 
 
