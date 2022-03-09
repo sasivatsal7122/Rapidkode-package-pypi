@@ -1,6 +1,6 @@
 import math
 from heapq import heappop, heappush
-
+import random
 
 ''' Searching algorithms '''
 
@@ -250,7 +250,7 @@ Step 6 − If data is smaller than middle, search in lower sub-list.
 
 Step 7 − Repeat until match.
 
-probing formula: 
+probing formula:
 
 mid = Lo + ((Hi - Lo) / (A[Hi] - A[Lo])) * (X - A[Lo])
 
@@ -294,18 +294,18 @@ def binarySearch( arr, l, r, x):
     if r >= l:
         mid = l + ( r-l ) // 2
         if arr[mid] == x:
-            return mid       
+            return mid
         if arr[mid] > x:
-            return binarySearch(arr, l,mid - 1, x)        
+            return binarySearch(arr, l,mid - 1, x)
         return binarySearch(arr, mid + 1, r, x)
-         
+
     return "element not found"
  def exponentialSearch(arr, n, x):
     if arr[0] == x:
-        return 0        
+        return 0
     i = 1
     while i < n and arr[i] <= x:
-        i = i * 2     
+        i = i * 2
     return binarySearch( arr, i // 2,min(i, n-1), x) """)
 
     def info():
@@ -333,7 +333,7 @@ Step 3 − It then performs a binary search by slicing the list; arr[:4]
 
 class ternary:
 
-    def search(self, arr,x, l, r):
+    def search(self, arr, x, l, r):
         if (r >= l):
             mid1 = l + (r - l)//3
             mid2 = mid1 + (r - l)//3
@@ -345,12 +345,12 @@ class ternary:
                 return mid2
 
             if arr[mid1] > x:
-                return self.search(arr,x, l, mid1-1)
+                return self.search(arr, x, l, mid1-1)
 
             if arr[mid2] < x:
-                return self.search(arr, x,mid2+1, r)
+                return self.search(arr, x, mid2+1, r)
 
-            return self.search(arr, x,mid1+1, mid2-1)
+            return self.search(arr, x, mid1+1, mid2-1)
 
         return "element not found"
 
@@ -359,16 +359,16 @@ class ternary:
 def ternarySearch(arr, l, r, x):
     if (r >= l):
         mid1 = l + (r - l)//3
-        mid2 = mid1 + (r - l)//3 
+        mid2 = mid1 + (r - l)//3
         if arr[mid1] == x:
-            return mid1 
+            return mid1
         if arr[mid2] == x:
-            return mid2 
+            return mid2
         if arr[mid1] > x:
-            return ternarySearch(arr, l, mid1-1, x) 
+            return ternarySearch(arr, l, mid1-1, x)
         if arr[mid2] < x:
             return ternarySearch(arr, mid2+1, r, x)
-        return ternarySearch(arr, mid1+1, mid2-1, x)    
+        return ternarySearch(arr, mid1+1, mid2-1, x)
     return "element not found" """)
 
     def info():
@@ -395,14 +395,14 @@ Step 4: Element not found. Exit.
 
 
 class selection:
-    
+
     def sort(arr):
         size = len(arr)
         for step in range(size):
             min_idx = step
-            for i in range(step + 1, size):            
+            for i in range(step + 1, size):
                 if arr[i] < arr[min_idx]:
-                    min_idx = i            
+                    min_idx = i
             (arr[step], arr[min_idx]) = (arr[min_idx], arr[step])
         return arr
 
@@ -412,9 +412,9 @@ def selectionsort(arr):
     size = len(arr)
     for step in range(size):
         min_idx = step
-        for i in range(step + 1, size):            
+        for i in range(step + 1, size):
             if arr[i] < arr[min_idx]:
-                min_idx = i            
+                min_idx = i
         (arr[step], arr[min_idx]) = (arr[min_idx], arr[step])
     return arr """)
 
@@ -438,21 +438,23 @@ Step 3 - Pick the minimum value from the unpartitioned section and placed it int
 Step 4 - Repeat the process (n – 1) times until all of the elements in the list have been sorted.
 		""")
 
+
 class bubble:
-      
+
     def sort(arr):
-        n = len(arr)    
-        for i in range(n):    
-            for j in range(0, n-i-1):                    
-                if arr[j] > arr[j+1] :
+        n = len(arr)
+        for i in range(n):
+            for j in range(0, n-i-1):
+                if arr[j] > arr[j+1]:
                     arr[j], arr[j+1] = arr[j+1], arr[j]
         return arr
+
     def show():
         print("""
 def bubblesort(arr):
-    n = len(arr)    
-    for i in range(n):    
-        for j in range(0, n-i-1):                    
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
             if arr[j] > arr[j+1] :
                 arr[j], arr[j+1] = arr[j+1], arr[j]
     return arr """)
@@ -480,25 +482,25 @@ Step 4 - Repeat step 3 passes until you reach the outer pass (n – 1). Get the 
 
 Step 5 - Return the result when all passes have been done. Return the results of the sorted list
 		""")
-        
-        
+
+
 class insertion:
-      
-    def sort(arr):        
-        for i in range(1, len(arr)):    
-            key = arr[i]    
+
+    def sort(arr):
+        for i in range(1, len(arr)):
+            key = arr[i]
             j = i-1
-            while j >= 0 and key < arr[j] :
+            while j >= 0 and key < arr[j]:
                     arr[j + 1] = arr[j]
                     j -= 1
             arr[j + 1] = key
         return arr
-    
+
     def show():
         print("""
-def insertionsort(arr):        
-    for i in range(1, len(arr)):    
-        key = arr[i]    
+def insertionsort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
         j = i-1
         while j >= 0 and key < arr[j] :
                 arr[j + 1] = arr[j]
@@ -520,22 +522,22 @@ Step 1 - The first element in the array is assumed to be sorted. Take the second
 
 Step 2 - Compare key with the first element. If the first element is greater than key, then key is placed in front of the first element.
 
-Step 3 - Now, the first two elements are sorted.Take the third element and compare it with the elements on the left of it. 
+Step 3 - Now, the first two elements are sorted.Take the third element and compare it with the elements on the left of it.
 
 step 4 - Placed it just behind the element smaller than it. If there is no element smaller than it, then place it at the beginning of the array.
 
 Step 5 - Similarly, place every unsorted element at its correct position.
 		""")
-        
-        
+
+
 class merge:
-      
-    def sort(self,arr):
-        if len(arr) > 1:    
-            mid = len(arr)//2    
-            L = arr[:mid]    
-            R = arr[mid:]    
-            self.sort(L)    
+
+    def sort(self, arr):
+        if len(arr) > 1:
+            mid = len(arr)//2
+            L = arr[:mid]
+            R = arr[mid:]
+            self.sort(L)
             self.sort(R)
             i = j = k = 0
             while i < len(L) and j < len(R):
@@ -545,25 +547,25 @@ class merge:
                 else:
                     arr[k] = R[j]
                     j += 1
-                k += 1    
+                k += 1
             while i < len(L):
                 arr[k] = L[i]
                 i += 1
-                k += 1   
+                k += 1
             while j < len(R):
                 arr[k] = R[j]
                 j += 1
                 k += 1
         return arr
-        
+
     def show():
         print("""
 def mergesort(arr):
-    if len(arr) > 1:    
-        mid = len(arr)//2    
-        L = arr[:mid]    
-        R = arr[mid:]    
-        sort(L)    
+    if len(arr) > 1:
+        mid = len(arr)//2
+        L = arr[:mid]
+        R = arr[mid:]
+        sort(L)
         sort(R)
         i = j = k = 0
         while i < len(L) and j < len(R):
@@ -573,11 +575,11 @@ def mergesort(arr):
             else:
                 arr[k] = R[j]
                 j += 1
-            k += 1    
+            k += 1
         while i < len(L):
             arr[k] = L[i]
             i += 1
-            k += 1   
+            k += 1
         while j < len(R):
             arr[k] = R[j]
             j += 1
@@ -611,9 +613,10 @@ step 5 - The above steps will repeat till left < right.
 step 6 - Then we will call the merge function on two sub-arrays
 		""")
 
+
 class heap:
-      
-    def sort(arr):       
+
+    def sort(arr):
         heap = []
         for element in arr:
             heappush(heap, element)
@@ -621,26 +624,26 @@ class heap:
         while heap:
             ordered.append(heappop(heap))
         return ordered
-        
+
     def show():
         print("""
-def heapsort(arr):        
+def heapsort(arr):
     def heapify(arr, n, i):
-        largest = i  
-        l = 2 * i + 1     
-        r = 2 * i + 2            
+        largest = i
+        l = 2 * i + 1
+        r = 2 * i + 2
         if l < n and arr[largest] < arr[l]:
-            largest = l        
+            largest = l
         if r < n and arr[largest] < arr[r]:
-            largest = r        
+            largest = r
         if largest != i:
-            arr[i], arr[largest] = arr[largest], arr[i]  
+            arr[i], arr[largest] = arr[largest], arr[i]
         heapify(arr, n, largest)
     n = len(arr)
     for i in range(n//2 - 1, -1, -1):
-        heapify(arr, n, i)    
+        heapify(arr, n, i)
     for i in range(n-1, 0, -1):
-        arr[i], arr[0] = arr[0], arr[i]  
+        arr[i], arr[0] = arr[0], arr[i]
         heapify(arr, i, 0)
     return arr """)
 
@@ -659,13 +662,12 @@ heapsort is a comparison-based sorting algorithm
     def algo():
         print("""
 Algorithm
-Sorry buddy !, heap sort is too complex to 
+Sorry buddy !, heap sort is too complex to explain in step wise without images
 		""")
 
 
-
 class quick:
-    def sort(self,start, end, array):
+    def sort(self, start, end, array):
         ''''
         :param int start: array starting i.e 0
         :param int end: array ending i.e len(arr)-1
@@ -673,18 +675,18 @@ class quick:
          '''
         def partition(start, end, array):
             pivot_index = start
-            pivot = array[pivot_index]            
-            while start < end:                
+            pivot = array[pivot_index]
+            while start < end:
                 while start < len(array) and array[start] <= pivot:
-                    start += 1                    
+                    start += 1
                 while array[end] > pivot:
-                    end -= 1                
+                    end -= 1
                 if(start < end):
-                    array[start], array[end] = array[end], array[start]            
-            array[end], array[pivot_index] = array[pivot_index], array[end]            
+                    array[start], array[end] = array[end], array[start]
+            array[end], array[pivot_index] = array[pivot_index], array[end]
             return end
-        if (start < end):           
-            p = partition(start, end, array)            
+        if (start < end):
+            p = partition(start, end, array)
             self.sort(start, p - 1, array)
             self.sort(p + 1, end, array)
         return array
@@ -694,18 +696,18 @@ class quick:
 def quicksort(self,start, end, array):
         def partition(start, end, array):
             pivot_index = start
-            pivot = array[pivot_index]            
-            while start < end:                
+            pivot = array[pivot_index]
+            while start < end:
                 while start < len(array) and array[start] <= pivot:
-                    start += 1                    
+                    start += 1
                 while array[end] > pivot:
-                    end -= 1                
+                    end -= 1
                 if(start < end):
-                    array[start], array[end] = array[end], array[start]            
-            array[end], array[pivot_index] = array[pivot_index], array[end]            
+                    array[start], array[end] = array[end], array[start]
+            array[end], array[pivot_index] = array[pivot_index], array[end]
             return end
-        if (start < end):           
-            p = partition(start, end, array)            
+        if (start < end):
+            p = partition(start, end, array)
             self.sort(start, p - 1, array)
             self.sort(p + 1, end, array)
         return array """)
@@ -727,16 +729,16 @@ Like Merge Sort, QuickSort is a Divide and Conquer algorithm
 Algorithm
 
 step 1 - Select the Pivot Element
-    There are different variations of quicksort where the pivot element is selected from different positions. 
+    There are different variations of quicksort where the pivot element is selected from different positions.
     Here, we will be selecting the rightmost element of the array as the pivot element.
 
 step 2 - Rearrange the Array
-    Now the elements of the array are rearranged so that elements that are smaller than 
+    Now the elements of the array are rearranged so that elements that are smaller than
     the pivot are put on the left and the elements greater than the pivot are put on the right.
     Here's how we rearrange the array:
         1.A pointer is fixed at the pivot element. The pivot element is compared with the elements beginning from the first index.
         2.If the element is greater than the pivot element, a second pointer is set for that element.
-        3.Now, pivot is compared with other elements. If an element smaller than the pivot element is reached, 
+        3.Now, pivot is compared with other elements. If an element smaller than the pivot element is reached,
           the smaller element is swapped with the greater element found earlier.
         4.Again, the process is repeated to set the next greater element as the second pointer.
           And, swap it with another smaller element.
@@ -747,19 +749,18 @@ step 3 - Divide Subarrays
     Pivot elements are again chosen for the left and the right sub-parts separately. And, step 2 is repeated.
     The subarrays are divided until each subarray is formed of a single element. At this point, the array is already sorted.
 
-		""")    
-        
-        
+		""")
+
 
 class count:
-      
+
     def sort(arr):
         '''
          This particular radix sort cannot be used to sort non-positive integers \n
          and also this algo cannot sort non-intgers \n
          can only be strictly used for positive integers.
         '''
-        output = [0 for i in range(len(arr))]    
+        output = [0 for i in range(len(arr))]
         count = [0 for i in range(256)]
         array = [0 for _ in arr]
         for i in arr:
@@ -772,11 +773,11 @@ class count:
         for i in range(len(arr)):
             array[i] = output[i]
         return array
-        
+
     def show():
         print("""
 def countsort(arr):
-    output = [0 for i in range(len(arr))]    
+    output = [0 for i in range(len(arr))]
     count = [0 for i in range(256)]
     array = [0 for _ in arr]
     for i in arr:
@@ -806,18 +807,18 @@ Algorithm
 
 step 1 - Find out the maximum element (let it be max) from the given array.
 
-step 2 - Initialize an array of length max+1 with all elements 0. 
+step 2 - Initialize an array of length max+1 with all elements 0.
          This array is used for storing the count of the elements in the array.
-         
+
 step 3 - Store the count of each element at their respective index in count array
 
-         For example: if the count of element 3 is 2 then, 2 is stored in the 3rd position of count array. 
+         For example: if the count of element 3 is 2 then, 2 is stored in the 3rd position of count array.
          If element "5" is not present in the array, then 0 is stored in 5th position.
 
-step 4 - Store cumulative sum of the elements of the count array. 
+step 4 - Store cumulative sum of the elements of the count array.
          It helps in placing the elements into the correct index of the sorted array.
-         
-step 5 - Find the index of each element of the original array in the count array. 
+
+step 5 - Find the index of each element of the original array in the count array.
          This gives the cumulative count. Place the element at the index calculated as shown in figure below.
 
 step 6 - After placing each element at its correct position, decrease its count by one.
@@ -825,11 +826,10 @@ step 6 - After placing each element at its correct position, decrease its count 
 
 
 """)
-        
-        
+
 
 class radix:
-      
+
     def sort(arr):
         '''
          This particular radix sort cannot be used to sort non-positive integers \n
@@ -837,53 +837,53 @@ class radix:
          can only be strictly used for positive integers.
         '''
         def countingSort(arr, exp1):
-            n = len(arr)        
-            output = [0] * (n)        
-            count = [0] * (10)        
+            n = len(arr)
+            output = [0] * (n)
+            count = [0] * (10)
             for i in range(0, n):
                 index = arr[i] // exp1
-                count[index % 10] += 1        
+                count[index % 10] += 1
             for i in range(1, 10):
-                count[i] += count[i - 1]        
+                count[i] += count[i - 1]
             i = n - 1
             while i >= 0:
                 index = arr[i] // exp1
                 output[count[index % 10] - 1] = arr[i]
                 count[index % 10] -= 1
-                i -= 1        
+                i -= 1
             i = 0
             for i in range(0, len(arr)):
-                arr[i] = output[i]     
-            return arr  
+                arr[i] = output[i]
+            return arr
         max1 = max(arr)
         exp = 1
         while max1 / exp > 1:
             array = countingSort(arr, exp)
             exp *= 10
         return array
-        
+
     def show():
         print("""
 def radixsort(arr):
     def countingSort(arr, exp1):
-        n = len(arr)        
-        output = [0] * (n)        
-        count = [0] * (10)        
+        n = len(arr)
+        output = [0] * (n)
+        count = [0] * (10)
         for i in range(0, n):
             index = arr[i] // exp1
-            count[index % 10] += 1        
+            count[index % 10] += 1
         for i in range(1, 10):
-            count[i] += count[i - 1]        
+            count[i] += count[i - 1]
         i = n - 1
         while i >= 0:
             index = arr[i] // exp1
             output[count[index % 10] - 1] = arr[i]
             count[index % 10] -= 1
-            i -= 1        
+            i -= 1
         i = 0
         for i in range(0, len(arr)):
-            arr[i] = output[i]     
-        return arr  
+            arr[i] = output[i]
+        return arr
     max1 = max(arr)
     exp = 1
     while max1 / exp > 1:
@@ -905,7 +905,7 @@ Radix sort is a sorting algorithm that sorts the elements by first grouping the 
         print("""
 Algorithm
 
-step 1 - Find the largest element in the array, i.e. max. Let X be the number of digits in max. 
+step 1 - Find the largest element in the array, i.e. max. Let X be the number of digits in max.
          X is calculated because we have to go through all the significant places of all elements.
 
 step 2 - Now, go through each significant place one by one.
@@ -916,14 +916,13 @@ step 3 - Now, sort the elements based on digits at tens place.
 
 step 4 - Finally, sort the elements based on the digits at hundreds place.
 """)
-        
-        
+
 
 class bucket:
-      
+
     def sort(input_list):
         def insertion_sort(bucket):
-            for i in range (1, len (bucket)):
+            for i in range(1, len(bucket)):
                 var = bucket[i]
                 j = i - 1
                 while (j >= 0 and var < bucket[j]):
@@ -932,22 +931,22 @@ class bucket:
                 bucket[j + 1] = var
         max_value = max(input_list)
         size = max_value/len(input_list)
-        buckets_list= []
+        buckets_list = []
         for x in range(len(input_list)):
-            buckets_list.append([]) 
+            buckets_list.append([])
         for i in range(len(input_list)):
-            j = int (input_list[i] / size)
-            if j != len (input_list):
+            j = int(input_list[i] / size)
+            if j != len(input_list):
                 buckets_list[j].append(input_list[i])
             else:
                 buckets_list[len(input_list) - 1].append(input_list[i])
         for z in range(len(input_list)):
             insertion_sort(buckets_list[z])
         final_output = []
-        for x in range(len (input_list)):
+        for x in range(len(input_list)):
             final_output = final_output + buckets_list[x]
         return final_output
-        
+
     def show():
         print("""
 def sort(input_list):
@@ -963,7 +962,7 @@ def sort(input_list):
     size = max_value/len(input_list)
     buckets_list= []
     for x in range(len(input_list)):
-        buckets_list.append([]) 
+        buckets_list.append([])
     for i in range(len(input_list)):
         j = int (input_list[i] / size)
         if j != len (input_list):
@@ -998,17 +997,430 @@ step 1 - Create an array of size 10. Each slot of this array is used as a bucket
 
 step 2 - Insert elements into the buckets from the array. The elements are inserted according to the range of the bucket.
          In our example code, we have buckets each of ranges from 0 to 1, 1 to 2, 2 to 3,...... (n-1) to n.
-         Suppose, an input element is .23 is taken. It is multiplied by size = 10 (ie. .23*10=2.3). 
+         Suppose, an input element is .23 is taken. It is multiplied by size = 10 (ie. .23*10=2.3).
          Then, it is converted into an integer (ie. 2.3≈2). Finally, .23 is inserted into bucket-2.
          Similarly, .25 is also inserted into the same bucket. Everytime, the floor value of the floating point number is taken.
          If we take integer numbers as input, we have to divide it by the interval (10 here) to get the floor value.
          Similarly, other elements are inserted into their respective buckets.
 
-step 3 - The elements of each bucket are sorted using any of the stable sorting algorithms. 
+step 3 - The elements of each bucket are sorted using any of the stable sorting algorithms.
          Here, we have used quicksort (inbuilt function).
 
 step 4 - The elements from each bucket are gathered.
-         It is done by iterating through the bucket and inserting an individual element into the original array in each cycle. 
+         It is done by iterating through the bucket and inserting an individual element into the original array in each cycle.
          The element from the bucket is erased once it is copied into the original array.
-         
+
 """)
+
+
+class shell:
+
+    def sort(arr):
+        gap = len(arr) // 2
+        while gap > 0:
+            i = 0
+            j = gap
+            while j < len(arr):
+                if arr[i] > arr[j]:
+                    arr[i], arr[j] = arr[j], arr[i]
+                i += 1
+                j += 1
+                k = i
+                while k - gap > -1:
+                    if arr[k - gap] > arr[k]:
+                        arr[k-gap], arr[k] = arr[k], arr[k-gap]
+                    k -= 1
+            gap //= 2
+        return arr
+
+    def show():
+        print("""
+def shellsort(arr):
+    gap = len(arr) // 2
+    while gap > 0:
+        i = 0
+        j = gap
+        while j < len(arr):
+            if arr[i] >arr[j]:
+                arr[i],arr[j] = arr[j],arr[i]
+            i += 1
+            j += 1
+            k = i
+            while k - gap > -1:
+                if arr[k - gap] > arr[k]:
+                    arr[k-gap],arr[k] = arr[k],arr[k-gap]
+                k -= 1
+        gap //= 2
+    return arr
+
+""")
+
+    def info():
+        print("""
+Shell sort is a generalized version of the insertion sort algorithm
+. It first sorts elements that are far apart from each other and successively reduces the interval between the elements to be sorted
+. ShellSort is mainly a variation of Insertion Sort
+. In insertion sort, we move elements only one position ahead
+. When an element has to be moved far ahead, many movements are involved
+. The idea of shellSort is to allow exchange of far items
+. In shellSort, we make the array h-sorted for a large value of h
+. We keep reducing the value of h until it becomes 1
+. An array is said to be h-sorted if all sublists of every h’th element is sorted
+
+
+""")
+
+    def algo():
+        print("""
+Algorithm
+
+
+consider example array : [9,8,3,7,5,6,4,1]
+
+step 1 -In the first loop, if the array size is N = 8 then, the elements lying at the interval
+        of N/2 = 4 are compared and swapped if they are not in order.
+        The 0th element is compared with the 4th element.
+        If the 0th element is greater than the 4th one then, the 4th element is first stored in temp variable and the 0th element (ie. greater element) is stored in the 4th position and the element stored in temp is stored in the 0th position.
+
+step 2 - In the second loop, an interval of N/4 = 8/4 = 2 is taken and again the elements lying at these intervals are sorted.
+
+step 3 - The elements at 4th and 2nd position are compared.
+         The elements at 2nd and 0th position are also compared. All the elements in the array lying at the current interval are compared.
+
+step 4 - The same process goes on for remaining elements.
+         Finally, when the interval is N/8 = 8/8 =1 then the array elements lying at the interval of 1 are sorted.
+         The array is now completely sorted.
+""")
+
+
+class comb:
+
+    def sort(arr):
+        def getNextGap(gap):
+            gap = (gap * 10)//13
+            if gap < 1:
+                return 1
+            return gap
+
+        n = len(arr)
+        gap = n
+        swapped = True
+        while gap != 1 or swapped == 1:
+            gap = getNextGap(gap)
+            swapped = False
+            for i in range(0, n-gap):
+                if arr[i] > arr[i + gap]:
+                    arr[i], arr[i + gap] = arr[i + gap], arr[i]
+                    swapped = True
+        return arr
+
+    def show():
+        print("""
+def combsort(arr):
+    def getNextGap(gap):
+        gap = (gap * 10)//13
+        if gap < 1:
+            return 1
+        return gap
+
+    n = len(arr)
+    gap = n
+    swapped = True
+    while gap !=1 or swapped == 1:
+        gap = getNextGap(gap)
+        swapped = False
+        for i in range(0, n-gap):
+            if arr[i] > arr[i + gap]:
+                arr[i], arr[i + gap]=arr[i + gap], arr[i]
+                swapped = True
+    return arr
+""")
+
+    def info():
+        print("""
+Comb Sort is mainly an improvement over Bubble Sort
+. Bubble sort always compares adjacent values
+. So all inversions are removed one by one
+. Comb Sort improves on Bubble Sort by using gap of size more than 1
+. The gap starts with a large value and shrinks by a factor of 1.3 in every iteration until it reaches the value 1
+. Thus Comb Sort removes more than one inversion counts with one swap and performs better than Bubble Sort
+. (or) It is a comparison-based sorting algorithm that is mainly an improvement in bubble sort
+. In bubble sort, there is a comparison between the adjacent elements to sort the given array
+. So, in bubble sort, the gap size between the elements that are compared is 1
+. Comb sort improves the bubble sort by using a gap of size more than 1
+. The gap in the comb sort starts with the larger value and then shrinks by a factor of 1.3
+. It means that after the completion of each phase, the gap is divided by the shrink factor 1.3
+. The iteration continues until the gap is 1
+.The shrink factor is found to be 1.3 by testing comb sort on 200,000 random lists
+. Comb sort works better than the bubble sort, but its time complexity in average case and worst case remains O(n2)
+""")
+
+    def algo():
+        print("""
+Algorithm
+
+Sorry buddy !, heap sort is too complex to explain in step wise without images
+
+""")
+
+
+class pigeonhole:
+
+    def sort(arr):
+        my_min = min(arr)
+        my_max = max(arr)
+        size = my_max - my_min + 1
+        holes = [0] * size
+        for x in arr:
+            holes[x - my_min] += 1
+        i = 0
+        for count in range(size):
+            while holes[count] > 0:
+                holes[count] -= 1
+                arr[i] = count + my_min
+                i += 1
+        return arr
+
+    def show():
+        print("""
+def pigeonhole(arr):
+    my_min = min(arr)
+    my_max = max(arr)
+    size = my_max - my_min + 1
+    holes = [0] * size
+    for x in arr:
+        holes[x - my_min] += 1
+    i = 0
+    for count in range(size):
+        while holes[count] > 0:
+            holes[count] -= 1
+            arr[i] = count + my_min
+            i += 1
+    return arr
+""")
+
+    def info():
+        print("""
+Pigeonhole sorting is a sorting algorithm
+.that is suitable for sorting lists of elements where the number of elements and the number of possible key values are
+ approximately the same Where key here refers to the part of a group of data by which it is sorted, indexed, cross referenced, etc
+.It is used in quick, heap and many other sorting algorithm
+.If we consider number of elements (n) and the length of the range of possible key values (N) are approximately the same
+.It requires O(n + N) time
+""")
+
+    def algo():
+        print("""
+Algorithm
+
+step 1 - Iterate through the given list to find the least and greatest values in the array ‘a’.
+
+step 2 - Let least element = ‘mn’ and greatest element b = ‘mx’.
+
+step 3 - Let the range of possible values = ‘ mx+mn-1 ‘.
+
+step 4 - Declare an array that is initialized with null pigeonholes the same size as of the range. Let array be named as ‘pihole’.
+
+step 5 - Iterate through array again. Put each element in its Pigeonhole.
+
+step 6 - An element at position a[i] in the array is put in the hole at index a[i] – mn.
+
+step 7 - Now iterate over Pigeonhole array ie ‘pinhole’ array and put elements back into original array ‘a’.
+""")
+
+
+class cycle:
+    def sort(array):
+        writes = 0
+        for cycleStart in range(0, len(array) - 1):
+            item = array[cycleStart]
+            pos = cycleStart
+            for i in range(cycleStart + 1, len(array)):
+                if array[i] < item:
+                    pos += 1
+            if pos == cycleStart:
+                continue
+            while item == array[pos]:
+                pos += 1
+            array[pos], item = item, array[pos]
+            writes += 1
+            while pos != cycleStart:
+                pos = cycleStart
+                for i in range(cycleStart + 1, len(array)):
+                    if array[i] < item:
+                        pos += 1
+                while item == array[pos]:
+                    pos += 1
+                array[pos], item = item, array[pos]
+                writes += 1
+        return array
+
+    
+    def show():
+        print("""
+def cyclesort(array):
+    writes = 0
+    for cycleStart in range(0, len(array) - 1):
+        item = array[cycleStart]
+        pos = cycleStart
+        for i in range(cycleStart + 1, len(array)):
+            if array[i] < item:
+                pos += 1
+        if pos == cycleStart:
+            continue
+        while item == array[pos]:
+            pos += 1
+        array[pos], item = item, array[pos]
+        writes += 1
+        while pos != cycleStart:
+            pos = cycleStart
+            for i in range(cycleStart + 1, len(array)):
+                if array[i] < item:
+                    pos += 1
+            while item == array[pos]:
+                pos += 1
+            array[pos], item = item, array[pos]
+            writes += 1
+    return array
+""")
+
+
+
+    def info():
+        print("""
+Cycle sort is an in-place, unstable sorting algorithm, a comparison sort that is theoretically optimal in terms of the total number of writes to the original array, unlike any other in-place sorting algorithm
+. It is based on the idea that the permutation to be sorted can be factored into cycles, which can individually be rotated to give a sorted result
+. It is optimal in terms of number of memory writes
+. It minimizes the number of memory writes to sort (Each value is either written zero times, if it’s already in its correct position, or written one time to its correct position
+. It is based on the idea that array to be sorted can be divided into cycles
+. Cycles can be visualized as a graph
+. We have n nodes and an edge directed from node i to node j if the element at i-th index must be present at j-th index in the sorted array
+""")
+
+    def algo():
+        print("""
+Algorithm
+
+step 1 - Create a loop that begins at the beginning of the array and ends at the second to last item in the array
+
+step 2 - Save the value of the item at the current index.
+
+step 3 - In our example, we named our value item.
+
+step 4 - Make a copy of the current index.
+
+step 5 - In our example, we named our index copy currentIndexCopy.
+
+step 6 - Create an additional loop that begins at one index after the currentIndex and ends at the last item in the array. Inside of this loop, compare item to the value of the item at the index of the loop we’re currently in. If the value at the index of the child loop is less than item, increment the currentIndexCopy.
+
+step 7 - Once the loop from step 4 is completed, check to see if the currentIndexCopy has changed. If it has not changed, take a step forward in the loop.
+
+step 8 - If the value at currentIndexCopy is the same as item, increment currentIndexCopy. This will skip all duplicate values.
+
+step 9 - Save the item at the currentIndexCopy (we called our temp), place item into the index of currentIndexCopy, and update the value of item to temp.
+
+step 10 - Create an additional loop that runs until currentIndex and currentIndexCopy are the same.
+
+step 1 - Inside the loop, save currentIndex to currentIndexCopy.
+
+step 1 - Repeat steps 4, 6 and 7.
+""")
+
+
+class prime:
+
+    def isprime( n, k=4):
+        def miillerTest(d, n):
+            def power(x, y, p):
+                res = 1;	
+                x = x % p;
+                while (y > 0):
+                    if (y & 1):
+                        res = (res * x) % p;
+                    y = y>>1; 
+                    x = (x * x) % p;
+                
+                return res;
+            a = 2 + random.randint(1, n - 4);
+            x = power(a, d, n);
+            if (x == 1 or x == n - 1):
+                return True;
+            while (d != n - 1):
+                x = (x * x) % n;
+                d *= 2;
+
+                if (x == 1):
+                    return False;
+                if (x == n - 1):
+                    return True;
+            return False;
+         
+        if (n <= 1 or n == 4):
+            return False;
+        if (n <= 3):
+            return True;
+
+        d = n - 1;
+        while (d % 2 == 0):
+            d //= 2;
+
+        for i in range(k):
+            if (miillerTest(d, n) == False):
+                return False;
+
+        return True;
+    
+    def getupto(n):
+        primearr=[]
+        prime = [True for i in range(n + 1)]
+        p = 2
+        while (p * p <= n):            
+            if (prime[p] == True):                
+                for i in range(p ** 2, n + 1, p):
+                    prime[i] = False
+            p += 1
+        prime[0]= False
+        prime[1]= False
+        for p in range(n + 1):
+            if prime[p]:
+                primearr.append(p)
+        return primearr
+    
+    def getinrange(low, high):
+        primearr=[]
+        def fillPrimes(chprime, high):   
+            ck = [True]*(high+1)
+            l = int(math.sqrt(high))
+            for i in range(2, l+1):
+                if ck[i]:
+                    for j in range(i*i, l+1, i):
+                        ck[j] = False
+            for k in range(2, l+1):
+                if ck[k]:
+                    chprime.append(k)
+        
+        chprime = list()
+        fillPrimes(chprime, high)
+
+        prime = [True] * (high-low + 1)
+        for i in chprime:
+            lower = (low//i)
+            if lower <= 1:
+                lower = i+i
+            elif (low % i) != 0:
+                lower = (lower * i) + i
+            else:
+                lower = lower*i
+            for j in range(lower, high+1, i):
+                prime[j-low] = False
+                    
+                    
+        for k in range(low, high + 1):
+                if prime[k-low]:
+                    primearr.append(k)
+        return primearr
+            
+
+
+
+
