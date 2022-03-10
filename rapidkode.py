@@ -1,6 +1,8 @@
 import math
 from heapq import heappop, heappush
 import random
+from collections import defaultdict
+from bisect import bisect, insort
 
 ''' Searching algorithms '''
 
@@ -1327,9 +1329,9 @@ step 1 - Repeat steps 4, 6 and 7.
 """)
 
 
-class prime:
 
-    def isprime( n, k=4):
+
+def checkprime( n, k=4):
         def miillerTest(d, n):
             def power(x, y, p):
                 res = 1;	
@@ -1369,8 +1371,32 @@ class prime:
                 return False;
 
         return True;
-    
-    def getupto(n):
+
+def showsieves():
+        print("""
+def getupto(n):
+    primearr=[]
+    prime = [True for i in range(n + 1)]
+    p = 2
+    while (p * p <= n):            
+        if (prime[p] == True):                
+            for i in range(p ** 2, n + 1, p):
+                prime[i] = False
+        p += 1
+    prime[0]= False
+    prime[1]= False
+    for p in range(n + 1):
+        if prime[p]:
+            primearr.append(p)
+    return primearr
+    """)
+
+
+
+
+class getprimes:
+
+    def upto(n):
         primearr=[]
         prime = [True for i in range(n + 1)]
         p = 2
@@ -1386,7 +1412,7 @@ class prime:
                 primearr.append(p)
         return primearr
     
-    def getinrange(low, high):
+    def inrange(low, high):
         primearr=[]
         def fillPrimes(chprime, high):   
             ck = [True]*(high+1)
@@ -1420,7 +1446,257 @@ class prime:
                     primearr.append(k)
         return primearr
             
+class fib:
+    def getelement(n):
+        """
+        Find the n'th fibonacci number. Uses memoization.
 
+        :param n: the n'th fibonacci number to find
+        :param m: dictionary used to store previous numbers
+        :return: the value of the n'th fibonacci number
+        """
 
+        a = 0
+        b = 1
+        if n < 0:
+            print("Incorrect input")
+        elif n == 0:
+            return a
+        elif n == 1:
+            return b
+        else:
+            for i in range(2, n):
+                c = a + b
+                a = b
+                b = c
+        return b
+    
+    def generate(n):
+        cache = {0: 0, 1: 1}
+        def fibonacci_of(n):
+            if n in cache:
+                return cache[n]
+            cache[n] = fibonacci_of(n - 1) + fibonacci_of(n - 2)
+            return cache[n]
+        return [fibonacci_of(n) for n in range(n)]
+        
+class graph:
+     
+    def __init__(self): 
+        self.graph = defaultdict(list)
+        self.Time = 0
+ 
+    def buildedge(self,u,v):
+        self.graph[u].append(v)
+    
+    def buildmultiedge(self,coord_arr):
+        self.V = len(coord_arr)//2
+        for i in range(len(coord_arr)//2):
+            self.buildedge(coord_arr[2*i],coord_arr[2*i+1]) 
+ 
+    def BFS(self, s): 
+        bfsarr = []
+        visited = [False] * (max(self.graph) + 1) 
+        queue = [] 
+        queue.append(s)
+        visited[s] = True
+ 
+        while queue:
+            s = queue.pop(0)
+            bfsarr.append('-->')
+            bfsarr.append(s)
+            for i in self.graph[s]:
+                if visited[i] == False:
+                    queue.append(i)
+                    visited[i] = True
+        return bfsarr
+                    
+ 
+    def dfshelper(self, v, visited):     
+        visited.add(v)
+        dfsarr.append('-->')
+        dfsarr.append(v)
+        for neighbour in self.graph[v]:
+            if neighbour not in visited:
+                self.dfshelper(neighbour, visited) 
+    def DFS(self, v):
+        global dfsarr
+        dfsarr = [] 
+        visited = set() 
+        self.dfshelper(v, visited)
+        return dfsarr
+    
+    
+    def APUtil(self, u, visited, ap, parent, low, disc):     
+        children = 0 
+        visited[u]= True 
+        disc[u] = self.Time
+        low[u] = self.Time
+        self.Time += 1 
+        for v in self.graph[u]:
+            if visited[v] == False :
+                parent[v] = u
+                children += 1
+                self.APUtil(v, visited, ap, parent, low, disc) 
+                low[u] = min(low[u], low[v]) 
+                if parent[u] == -1 and children > 1:
+                    ap[u] = True 
+                if parent[u] != -1 and low[v] >= disc[u]:
+                    ap[u] = True                        
+            elif v != parent[u]:
+                low[u] = min(low[u], disc[v])
+    def findAP(self):  
+        visited = [False] * (self.V)
+        disc = [float("Inf")] * (self.V)
+        low = [float("Inf")] * (self.V)
+        parent = [-1] * (self.V)
+        ap = [False] * (self.V) 
+        for i in range(self.V):
+            if visited[i] == False:
+                self.APUtil(i, visited, ap, parent, low, disc)
+        for index, value in enumerate (ap):
+            if value == True: print (index,end=" ")
+            
+class pattern:
+    global KMPSearch
+    def KMPSearch(pat, txt):
+        def computeLPSArray(pat, M, lps):
+            len = 0 
+            lps[0] 
+            i = 1
+            while i < M:
+                if pat[i]== pat[len]:
+                    len += 1
+                    lps[i] = len
+                    i += 1
+                else:
+                    if len != 0:
+                        len = lps[len-1]
+        
+                    else:
+                        lps[i] = 0
+                        i += 1
+            return pat, M, lps
+        M = len(pat)
+        N = len(txt)
+        lps = [0]*M
+        j = 0 
+        pat, M, lps = computeLPSArray(pat, M, lps)
+        i = 0 
+        while i < N:
+            if pat[j] == txt[i]:
+                i += 1
+                j += 1
+            if j == M:
+                found = True
+                index = i-j
+                break
+                j = lps[j-1]
+            elif i < N and pat[j] != txt[i]:
+                if j != 0:
+                    j = lps[j-1]
+                else:
+                    i += 1
+            else:
+                found = False
+                index = 'not found'
+           
+        return found,index
+  
+    class isthere:
+        def __init__(self,a):
+            self.a = a
+        def inn(self,b):
+            a,b = KMPSearch(self.a, b)
+            return a
+        
+    class whereis:
+        def __init__(self,c):
+            self.c = c
+        def inn(self,b):
+            a,x = KMPSearch(self.c, b)
+            return x
+            
+class getprimefactors:
+    def fornum(n):  
+        primefactorsarr = []       
+        while n % 2 == 0:
+            primefactorsarr.append(2)
+            n=n/2           
+        for i in range(3,int(math.sqrt(n))+1,2):            
+            while n % i== 0:
+                primefactorsarr.append(i)    
+                n=n/i            
+        if n > 2:
+            primefactorsarr.append(n)
+        return primefactorsarr
+                      
+def findgcdof(a, b):
+    if a == 0 :
+        return b
+     
+    return findgcdof(b%a, a)
 
+class findinversions:
+    def forr(arr):
+        N = len(arr)
+        if N <= 1:
+            return 0
+        sortList = []
+        result = 0    
+        for i, v in enumerate(arr):
+            heappush(sortList, (v, i))
+        x = [] 
+        while sortList: 
+            v, i = heappop(sortList)              
+            y = bisect(x, i) 
+            result += i - y
+            insort(x, i)  
+        return result
 
+class catlan_mumbers:
+    def getelement(x):
+        def catalan(n):
+            def binomialCoefficient(n, k):     
+                if (k > n - k):
+                    k = n - k        
+                res = 1        
+                for i in range(k):
+                    res = res * (n - i)
+                    res = res / (i + 1)
+                return res
+            c = binomialCoefficient(2*n, n)
+            return c/(n + 1)
+        return catalan(x)
+    def gen(x):
+        catlanarr= []
+        def catalan(n):
+            def binomialCoefficient(n, k):     
+                if (k > n - k):
+                    k = n - k        
+                res = 1        
+                for i in range(k):
+                    res = res * (n - i)
+                    res = res / (i + 1)
+                return res
+            c = binomialCoefficient(2*n, n)
+            return c/(n + 1)
+        for i in range(x):
+            catlanarr.append(catalan(i))
+        return catlanarr
+
+class istheresum:
+    def __init__(self,number):
+        self.n = number
+    def inarr(self,arr):
+        def isSubsetSum(arr, n, summ):
+            if (summ == 0):
+                return True
+            if (n == 0):
+                return False
+            if (arr[n - 1] > summ):
+                return isSubsetSum(arr, n - 1, summ)
+            return isSubsetSum(
+                arr, n-1, summ) or isSubsetSum(
+                arr, n-1, summ-arr[n-1])
+        return isSubsetSum(arr, len(arr), self.n)
