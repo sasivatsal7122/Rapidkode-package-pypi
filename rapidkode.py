@@ -3,7 +3,132 @@ from heapq import heappop, heappush
 import random
 from collections import defaultdict
 from bisect import bisect, insort
+import time
+import sys
+from unicodedata import decimal
 
+
+''' misc '''
+def ispalindrome(x):
+    return x == x[::-1]
+
+
+ 
+
+
+
+
+'''number system conversions'''
+
+class convert:
+    def __init__(self,number,syst):
+        self.n = number
+        self.sys = syst
+    def to(self,req):
+        '''decimal to all'''
+        def deca(x,y):
+            if x == 'bin':
+                try:
+                    z = bin(y)
+                    return z[2:]
+                except:
+                    print("Invalid conversion ,  cannot convert",self.n,'to',req)
+            elif x == 'oct':
+                try:
+                    z = oct(y)
+                    return z[2:]
+                except:
+                    print("Invalid conversion ,  cannot convert",self.n,'to',req)
+            elif x == 'hex':
+                try:
+                    z = hex(y)
+                    return z[2:]
+                except:
+                    print("Invalid conversion ,  cannot convert",self.n,'to',req)
+            else:
+                print("invalid operation performed,cannot convert",req,'to',req)
+        '''binary to all'''
+        def bina(x,y):
+            if x == 'dec':
+                try:
+                  return int(str(y), 2)
+                except:
+                    print("Invalid conversion ,  cannot convert",self.n,'to',req)
+            elif x == 'oct':
+                try:
+                    onum = int(str(y), 2)
+                    onum = oct(onum)
+                    return onum[2:]
+                except:
+                    print("Invalid conversion ,  cannot convert",self.n,'to',req)
+            elif x == 'hex':
+                try:    
+                    hexnum = int(str(y), 2)
+                    hexnum = hex(hexnum)
+                    return hexnum[2:]
+                except:
+                    print("Invalid conversion ,  cannot convert",self.n,'to',req)
+            else:
+                print("invalid operation performed,cannot convert",req,'to',req)
+        '''octal to all'''
+        def octa(x,y):
+            if x == 'dec':
+                try:
+                    return int(str(y), 8)
+                except:
+                    print("Invalid conversion ,  cannot convert",self.n,'to',req)
+            elif x == 'bin':
+                try:
+                    onum = int(str(y), 8)
+                    onum = bin(onum)
+                    return onum[2:]
+                except:
+                    print("Invalid conversion ,  cannot convert",self.n,'to',req)
+            elif x == 'hex':
+                try:    
+                    hexnum = int(str(y), 8)
+                    hexnum = hex(hexnum)
+                    return hexnum[2:]
+                except:
+                    print("Invalid conversion ,  cannot convert",self.n,'to',req)
+            else:
+                print("invalid operation performed,cannot convert",req,'to',req)
+        '''hexadecimal to all'''
+        def hexa(x,y):
+            if x == 'dec':
+                try:
+                    return int(str(y), 16)
+                except:
+                    print("Invalid conversion ,  cannot convert",self.n,'to',req)
+            elif x == 'bin':
+                try:
+                    binum = int(str(y), 16)
+                    binum = bin(binum)
+                    return binum[2:]
+                except:
+                    print("Invalid conversion ,  cannot convert",self.n,'to',req)
+            elif x == 'oct':
+                try:
+                    onum = int(str(y), 16)
+                    onum = oct(onum)
+                    return onum[2:]
+                except:
+                    print("Invalid conversion ,  cannot convert",self.n,'to',req)
+            else:
+                print("invalid operation performed,cannot convert",req,'to',req)
+        systss = ['bin','oct','hex','dec']
+        if self.sys in systss and req in systss:
+            if self.sys=='bin':
+                return bina(req,self.n)
+            if self.sys=='dec':
+                return deca(req,self.n)
+            if self.sys=='oct':
+                return octa(req,self.n)
+            if self.sys=='hex':
+                return hexa(req,self.n)
+        else:
+            print("Invalid operation performed, try",systss)
+            
 ''' Searching algorithms '''
 
 
@@ -1397,6 +1522,7 @@ def getupto(n):
 class getprimes:
 
     def upto(n):
+        start_time = time.time()
         primearr=[]
         prime = [True for i in range(n + 1)]
         p = 2
@@ -1410,6 +1536,10 @@ class getprimes:
         for p in range(n + 1):
             if prime[p]:
                 primearr.append(p)
+        end_time = time.time()
+        time_taken = end_time - start_time
+        print("\nTime taken to execute: ", time_taken)
+        print('\nsize of prime array : ',sys.getsizeof(primearr))
         return primearr
     
     def inrange(low, high):
@@ -1700,3 +1830,94 @@ class istheresum:
                 arr, n-1, summ) or isSubsetSum(
                 arr, n-1, summ-arr[n-1])
         return isSubsetSum(arr, len(arr), self.n)
+
+class bits:
+    def toggle_bits(x):
+        even_bits = x & 0xAAAAAAAA    
+        odd_bits = x & 0x55555555        
+        even_bits >>= 1        
+        odd_bits <<= 1
+        for i in range(0,32,2):
+            i_bit = (x >> 1) & 1;
+            i_1_bit = (x >> (i + 1)) & 1;
+            x = x - (i_bit << i) 
+            - (i_1_bit << (i + 2)) 
+            + (i_bit << (i + 1)) 
+            + (i_1_bit << i); 
+        return (even_bits | odd_bits)
+    
+    def convert_to_bin(n) :
+        strr=''
+        i = 1 << 31
+        while(i > 0) :
+            if((n & i) != 0) :
+                strr+='1'
+            else :
+                strr+='0'
+            i = i // 2
+        return int(strr)
+    
+    def countsetbits(n):
+        def count_util(n):
+            def util(n):
+                x = 0
+                while ((1 << x) <= n):
+                    x += 1
+                return x - 1
+            if (n <= 1):
+                return n
+            x = util(n)
+            return (x * pow(2, (x - 1))) + (n - pow(2, x) + 1) + count_util(n - pow(2, x))
+        return count_util(n)
+
+    def rotate_byleft(x,d):
+        SHORT_SIZE = 32
+        return (x << d) | (x >> (SHORT_SIZE - d))
+    def rotate_byright(x,d):
+        SHORT_SIZE = 32
+        return (x >> d) | (x << (SHORT_SIZE - d)) & 0xDDDDDF
+    
+    def countflips(a, b):
+        flips = 0
+        while(a > 0 or b > 0):
+            t1 = (a & 1)
+            t2 = (b & 1)
+            if(t1 != t2):
+                flips += 1                
+            a>>=1
+            b>>=1
+        return flips
+    global sparseutil
+    def sparseutil(x):
+        bin = []
+        while (x != 0):
+            bin.append(x & 1)
+            x >>= 1    
+        bin.append(0)
+        n = len(bin)
+        last_final = 0    
+        for i in range(1,n - 1):            
+            if ((bin[i] == 1 and bin[i - 1] == 1
+                and bin[i + 1] != 1)):                    
+                bin[i + 1] = 1
+                for j in range(i,last_final-1,-1):
+                    bin[j] = 0
+                last_final = i + 1
+        ans = 0
+        for i in range(n):
+            ans += bin[i] * (1 << i)
+        return ans
+    def sparsenum_upto(x):
+        sparse_ls = []
+        for i in range(x):
+            sparse_ls.append(sparseutil(i))
+        sparse_ls = set(sparse_ls)
+        return sorted(sparse_ls)
+    def sparsenum_after(n):
+        return sparseutil(n)
+        
+        
+        
+        
+    
+    

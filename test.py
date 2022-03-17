@@ -10,5 +10,5 @@ arr = [0,1,0,2,1,2,2,0,2,3,3,3]
 # print(x.findAP())
 # print(y)
 # print(z)
-x = rk.istheresum(38).inarr(arr)
+x = rk.bits.sparsenums_upto(1000)
 print(x)
