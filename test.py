@@ -10,6 +10,6 @@ arr = [-2, 45, 0, 11, -9]
 # print(x.findAP())
 # print(y)
 # print(z)
-# x = rk.bits.sparsenums_upto(1000)
-x = rk.linear.search(arr,45)
+x = rk.numbers.fib.generate(100)
+#x = rk.linear.search(arr,-9)
 print(x)

@@ -12,12 +12,172 @@ from unicodedata import decimal
 def ispalindrome(x):
     return x == x[::-1]
 
+class numbers:
+    
+    global sparseutil
+    def sparseutil(x):
+        bin = []
+        while (x != 0):
+            bin.append(x & 1)
+            x >>= 1    
+        bin.append(0)
+        n = len(bin)
+        last_final = 0    
+        for i in range(1,n - 1):            
+            if ((bin[i] == 1 and bin[i - 1] == 1
+                and bin[i + 1] != 1)):                    
+                bin[i + 1] = 1
+                for j in range(i,last_final-1,-1):
+                    bin[j] = 0
+                last_final = i + 1
+        ans = 0
+        for i in range(n):
+            ans += bin[i] * (1 << i)
+        return ans
+    def gen_sparsenum_upto(x):
+        sparse_ls = []
+        for i in range(x):
+            sparse_ls.append(sparseutil(i))
+        sparse_ls = set(sparse_ls)
+        return sorted(sparse_ls)
+    def get_sparsenum_after(n):
+        return sparseutil(n)
+    
+    
+    def checkprime( n, k=4):
+        def miillerTest(d, n):
+            def power(x, y, p):
+                res = 1;	
+                x = x % p;
+                while (y > 0):
+                    if (y & 1):
+                        res = (res * x) % p;
+                    y = y>>1; 
+                    x = (x * x) % p;
+                
+                return res;
+            a = 2 + random.randint(1, n - 4);
+            x = power(a, d, n);
+            if (x == 1 or x == n - 1):
+                return True;
+            while (d != n - 1):
+                x = (x * x) % n;
+                d *= 2;
+
+                if (x == 1):
+                    return False;
+                if (x == n - 1):
+                    return True;
+            return False;
+         
+        if (n <= 1 or n == 4):
+            return False;
+        if (n <= 3):
+            return True;
+
+        d = n - 1;
+        while (d % 2 == 0):
+            d //= 2;
+
+        for i in range(k):
+            if (miillerTest(d, n) == False):
+                return False;
+
+        return True
+
+    
+    class getprimes:
+    
+        def upto(n):
+            start_time = time.time()
+            primearr=[]
+            prime = [True for i in range(n + 1)]
+            p = 2
+            while (p * p <= n):            
+                if (prime[p] == True):                
+                    for i in range(p ** 2, n + 1, p):
+                        prime[i] = False
+                p += 1
+            prime[0]= False
+            prime[1]= False
+            for p in range(n + 1):
+                if prime[p]:
+                    primearr.append(p)
+            end_time = time.time()
+            time_taken = end_time - start_time
+            print("\nTime taken to execute: ", time_taken)
+            print('\nsize of prime array : ',sys.getsizeof(primearr))
+            return primearr
+        
+        def inrange(low, high):
+            primearr=[]
+            def fillPrimes(chprime, high):   
+                ck = [True]*(high+1)
+                l = int(math.sqrt(high))
+                for i in range(2, l+1):
+                    if ck[i]:
+                        for j in range(i*i, l+1, i):
+                            ck[j] = False
+                for k in range(2, l+1):
+                    if ck[k]:
+                        chprime.append(k)
+            
+            chprime = list()
+            fillPrimes(chprime, high)
+
+            prime = [True] * (high-low + 1)
+            for i in chprime:
+                lower = (low//i)
+                if lower <= 1:
+                    lower = i+i
+                elif (low % i) != 0:
+                    lower = (lower * i) + i
+                else:
+                    lower = lower*i
+                for j in range(lower, high+1, i):
+                    prime[j-low] = False
+                        
+                        
+            for k in range(low, high + 1):
+                    if prime[k-low]:
+                        primearr.append(k)
+            return primearr
+            
+    class fib:
+        def getelement(n):
+            """
+            Find the n'th fibonacci number. Uses memoization.
+
+            :param n: the n'th fibonacci number to find
+            :param m: dictionary used to store previous numbers
+            :return: the value of the n'th fibonacci number
+            """
+
+            a = 0
+            b = 1
+            if n < 0:
+                print("Incorrect input")
+            elif n == 0:
+                return a
+            elif n == 1:
+                return b
+            else:
+                for i in range(2, n):
+                    c = a + b
+                    a = b
+                    b = c
+            return b
+        
+        def generate(n):
+            cache = {0: 0, 1: 1}
+            def fibonacci_of(n):
+                if n in cache:
+                    return cache[n]
+                cache[n] = fibonacci_of(n - 1) + fibonacci_of(n - 2)
+                return cache[n]
+            return [fibonacci_of(n) for n in range(n)]
 
  
-
-
-
-
 '''number system conversions'''
 
 class convert:
@@ -1454,49 +1614,6 @@ step 1 - Repeat steps 4, 6 and 7.
 """)
 
 
-
-
-def checkprime( n, k=4):
-        def miillerTest(d, n):
-            def power(x, y, p):
-                res = 1;	
-                x = x % p;
-                while (y > 0):
-                    if (y & 1):
-                        res = (res * x) % p;
-                    y = y>>1; 
-                    x = (x * x) % p;
-                
-                return res;
-            a = 2 + random.randint(1, n - 4);
-            x = power(a, d, n);
-            if (x == 1 or x == n - 1):
-                return True;
-            while (d != n - 1):
-                x = (x * x) % n;
-                d *= 2;
-
-                if (x == 1):
-                    return False;
-                if (x == n - 1):
-                    return True;
-            return False;
-         
-        if (n <= 1 or n == 4):
-            return False;
-        if (n <= 3):
-            return True;
-
-        d = n - 1;
-        while (d % 2 == 0):
-            d //= 2;
-
-        for i in range(k):
-            if (miillerTest(d, n) == False):
-                return False;
-
-        return True;
-
 def showsieves():
         print("""
 def getupto(n):
@@ -1515,100 +1632,6 @@ def getupto(n):
             primearr.append(p)
     return primearr
     """)
-
-
-
-
-class getprimes:
-
-    def upto(n):
-        start_time = time.time()
-        primearr=[]
-        prime = [True for i in range(n + 1)]
-        p = 2
-        while (p * p <= n):            
-            if (prime[p] == True):                
-                for i in range(p ** 2, n + 1, p):
-                    prime[i] = False
-            p += 1
-        prime[0]= False
-        prime[1]= False
-        for p in range(n + 1):
-            if prime[p]:
-                primearr.append(p)
-        end_time = time.time()
-        time_taken = end_time - start_time
-        print("\nTime taken to execute: ", time_taken)
-        print('\nsize of prime array : ',sys.getsizeof(primearr))
-        return primearr
-    
-    def inrange(low, high):
-        primearr=[]
-        def fillPrimes(chprime, high):   
-            ck = [True]*(high+1)
-            l = int(math.sqrt(high))
-            for i in range(2, l+1):
-                if ck[i]:
-                    for j in range(i*i, l+1, i):
-                        ck[j] = False
-            for k in range(2, l+1):
-                if ck[k]:
-                    chprime.append(k)
-        
-        chprime = list()
-        fillPrimes(chprime, high)
-
-        prime = [True] * (high-low + 1)
-        for i in chprime:
-            lower = (low//i)
-            if lower <= 1:
-                lower = i+i
-            elif (low % i) != 0:
-                lower = (lower * i) + i
-            else:
-                lower = lower*i
-            for j in range(lower, high+1, i):
-                prime[j-low] = False
-                    
-                    
-        for k in range(low, high + 1):
-                if prime[k-low]:
-                    primearr.append(k)
-        return primearr
-            
-class fib:
-    def getelement(n):
-        """
-        Find the n'th fibonacci number. Uses memoization.
-
-        :param n: the n'th fibonacci number to find
-        :param m: dictionary used to store previous numbers
-        :return: the value of the n'th fibonacci number
-        """
-
-        a = 0
-        b = 1
-        if n < 0:
-            print("Incorrect input")
-        elif n == 0:
-            return a
-        elif n == 1:
-            return b
-        else:
-            for i in range(2, n):
-                c = a + b
-                a = b
-                b = c
-        return b
-    
-    def generate(n):
-        cache = {0: 0, 1: 1}
-        def fibonacci_of(n):
-            if n in cache:
-                return cache[n]
-            cache[n] = fibonacci_of(n - 1) + fibonacci_of(n - 2)
-            return cache[n]
-        return [fibonacci_of(n) for n in range(n)]
         
 class graph:
      
@@ -1887,37 +1910,9 @@ class bits:
             a>>=1
             b>>=1
         return flips
-    global sparseutil
-    def sparseutil(x):
-        bin = []
-        while (x != 0):
-            bin.append(x & 1)
-            x >>= 1    
-        bin.append(0)
-        n = len(bin)
-        last_final = 0    
-        for i in range(1,n - 1):            
-            if ((bin[i] == 1 and bin[i - 1] == 1
-                and bin[i + 1] != 1)):                    
-                bin[i + 1] = 1
-                for j in range(i,last_final-1,-1):
-                    bin[j] = 0
-                last_final = i + 1
-        ans = 0
-        for i in range(n):
-            ans += bin[i] * (1 << i)
-        return ans
-    def sparsenum_upto(x):
-        sparse_ls = []
-        for i in range(x):
-            sparse_ls.append(sparseutil(i))
-        sparse_ls = set(sparse_ls)
-        return sorted(sparse_ls)
-    def sparsenum_after(n):
-        return sparseutil(n)
+    
 
-
-class linkedlist:
+#class linkedlist:
     
         
         
