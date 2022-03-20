@@ -1915,6 +1915,10 @@ class bits:
         return sorted(sparse_ls)
     def sparsenum_after(n):
         return sparseutil(n)
+
+
+class linkedlist:
+    
         
         
         
