@@ -6,6 +6,7 @@ from bisect import bisect, insort
 import time
 import sys
 from unicodedata import decimal
+import re, sys
 
 
 ''' misc '''
@@ -88,6 +89,17 @@ class numbers:
     
     class getprimes:
     
+        def generate(x):
+            def isPrime(n):
+                return re.match(r'^1?$|^(11+?)\1+$', '1' * n) == None
+            N = x
+            M = 100              
+            l = list()           
+            while len(l) < N:
+                l += filter(isPrime, range(M - 100, M)) 
+                M += 100           
+            return l[:N]                    
+
         def upto(n):
             start_time = time.time()
             primearr=[]
@@ -1912,11 +1924,101 @@ class bits:
         return flips
     
 
-#class linkedlist:
+
+class node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+    def __repr__(self):
+        return self.data    
+
+class linkedlist:
+    linked_listt = []
+    def __init__(self,nodes=None):
+        self.head = None
+        if nodes is not None:
+            node = node(data=nodes.pop(0))
+            self.head = node
+            for elem in nodes:
+                node.next = node(data=elem)
+                node = node.next
+    def __repr__(self):
+        node = self.head
+        nodes = []
+        while node is not None:
+            nodes.append(node.data)
+            node = node.next
+        nodes.append("None")
+        nodess = map(str, nodes) 
+        nodes = list(nodess)
+        return " -> ".join(nodes)
     
-        
-        
-        
-        
+    def __iter__(self):
+        node = self.head
+        while node is not None:
+            yield node
+            node = node.next
+    
+    def ins_beg(self, node):
+        node.next = self.head
+        self.head = node
+    def ins_end(self, node):
+        if self.head is None:
+            self.head = node
+            return
+        for current_node in self:
+            pass
+        current_node.next = node
+    def ins_after(self, target_node_data, new_node):
+        if self.head is None:
+            raise Exception("List is empty")
+
+        for node in self:
+            if node.data == target_node_data:
+                new_node.next = node.next
+                node.next = new_node
+                return
+
+        raise Exception("Node with data '%s' not found" % target_node_data)
+    def ins_before(self, target_node_data, new_node):
+        if self.head is None:
+            raise Exception("List is empty")
+
+        if self.head.data == target_node_data:
+            return self.add_first(new_node)
+
+        prev_node = self.head
+        for node in self:
+            if node.data == target_node_data:
+                prev_node.next = new_node
+                new_node.next = node
+                return
+            prev_node = node
+
+        raise Exception("Node with data '%s' not found" % target_node_data)
+    def del_node(self, target_node_data):
+        if self.head is None:
+            raise Exception("List is empty")
+
+        if self.head.data == target_node_data:
+            self.head = self.head.next
+            return
+
+        previous_node = self.head
+        for node in self:
+            if node.data == target_node_data:
+                previous_node.next = node.next
+                return
+            previous_node = node
+
+        raise Exception("Node with data '%s' not found" % target_node_data)
+    def return_as_list(self):
+        node = self.head
+        nodes = []
+        while node is not None:
+            nodes.append(node.data)
+            node = node.next
+        nodes.append("None")
+        return nodes
     
     
