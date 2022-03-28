@@ -202,5 +202,70 @@ step 6 - After placing each element at its correct position, decrease its count 
 ```
 The three functions `.show()`, `.info()`, `.algo()` can be used for all the 13 sorting techniques.
 
+## Graph Functions :
+| **Syntax**          | **Operation**                               
+|:-------------------:|:-------------------------------------------:
+| .buildedge(u,v)     | Create an Graph Edge                        
+| .buildmultiedge([]) | Creates an Graph with given Coord list      
+| .BFS(x)             | Perform Breadth First Search               
+| .DFS(x)             | Performs Depth First Search                 
+| .findAP()           | Returns the Articulation Point of the graph
+
+### Example:
+```python
+import rapidkode as rk
+
+# make graph object with graph() class
+
+my_graph = rk.graph()
+
+# adding one edge at a time
+my_graph.buildedge(0, 1)
+my_graph.buildedge(0, 2)
+my_graph.buildedge(1, 2)
+my_graph.buildedge(2, 0)
+my_graph.buildedge(2, 3)
+my_graph.buildedge(3, 3)
+```
+
+```python
+import rapidkode as rk
+
+# make graph object with graph() class
+
+my_graph = rk.graph()
+
+# adding multiple edges at once
+
+my_graph.buildmultiedge([0,1,0,2,1,2,2,0,2,3,3,3])
+```
+```python
+import rapidkode as rk
+
+# make graph object with graph() class
+
+my_graph = rk.graph()
+
+my_graph.buildmultiedge([0,1,0,2,1,2,2,0,2,3,3,3])
+
+# performing BFS from edge 2
+print(my_graph.BFS(2))
+
+# performing DFS from edge 2
+print(my_graph.DFS(2))
+
+# finding the Articulation Point
+print(my_graph.findAP())
+
+```
+### Output:
+```
+['-->', 2, '-->', 0, '-->', 3, '-->', 1]
+
+['-->', 2, '-->', 0, '-->', 1, '-->', 3]
+
+2
+```
+
 
                                                                                         
