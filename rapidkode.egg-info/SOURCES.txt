@@ -1,0 +1,14 @@
+CHANGELOG.txt
+LICENSE
+MANIFEST.in
+README.md
+rapidkode.py
+setup.py
+tempCodeRunnerFile.py
+test.py
+rapidkode/__init__.py
+rapidkode.egg-info/PKG-INFO
+rapidkode.egg-info/SOURCES.txt
+rapidkode.egg-info/dependency_links.txt
+rapidkode.egg-info/requires.txt
+rapidkode.egg-info/top_level.txt
