@@ -1,4 +1,4 @@
-<h1 align='center'>RapidKode: get ir right the first time</h1>
+<h1 align='center'>RapidKode: get it right the first time</h1>
 
 #### RapidKode is a Python package that provides fast, flexible, and expressive data structures,alogorithms designed to make working with both competitive programming and coding  easy and intuitive. It aims to be the fundamental high-level building block for competitive programming in Python.With RapidKode you can perform complex algorithms in less time, all the algorithms are optimized to their finest to reduce time complexity to make you stand out in the leader board. There is no more time wasting writing huge chucks of code and debugging them later, With RapidKode everything happens at your fingertips with just a single line of code. The aim of Rapidkode is to help beginners get started in competative programing, understand the importance of time and space. The motto of making Rapidkode is to 'Get it right the first time' instead of spending 10's of precious minutes on util functions.
 
@@ -453,4 +453,10 @@ print(var)
 [1.0, 1.0, 2.0, 5.0, 14.0, 42.0, 132.0, 429.0, 1430.0, 4862.0, 16796.0, 58786.0, 208012.0, 742900.0, 2674440.0, 9694845.0, 35357670.0, 129644790.0, 477638700.0, 1767263190.0, 6564120420.0, 24466267020.0, 91482563640.0, 343059613650.0, 1289904147324.0, 4861946401452.0, 18367353072152.0, 69533550916004.0]
 ```
 
+### Contributing to RapidKode
+- All contributions, bug reports, bug fixes, documentation improvements, enhancements, and ideas are welcome.
+- Raise an issue if you find any problem
+- If you like to contribute, fork the repo raise an issue before making a pull request, it will be easy for managing
 
+
+## Happy Rapid Koding!! 
