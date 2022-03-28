@@ -562,30 +562,26 @@ where -
 
 
 class exponential:
-
-    def binarySearch(self, arr, l, r, x):
-        if r >= l:
-            mid = l + (r-l) // 2
-
-            if arr[mid] == x:
-                return mid
-
-            if arr[mid] > x:
-                return self.binarySearch(arr, l,
-                                         mid - 1, x)
-
-            return self.binarySearch(arr, mid + 1, r, x)
-        return "element not found"
-
-    def search(self, arr, n, x):
-        if arr[0] == x:
-            return 0
-        i = 1
-        while i < n and arr[i] <= x:
-            i = i * 2
-
-        return self.binarySearch(arr, i // 2,
-                                 min(i, n-1), x)
+    global binarySearch
+    def binarySearch(A, left, right, x):
+        if left > right:
+            return -1
+        mid = (left + right) // 2
+        if x == A[mid]:
+            return mid
+        elif x < A[mid]:
+            return binarySearch(A, left, mid - 1, x)
+        else:
+            return binarySearch(A, mid + 1, right, x)
+    def search(arr,x):
+        def exputil(A,x):
+            if not A:
+                return -1
+            bound = 1
+            while bound < len(A) and A[bound] < x:
+                bound *= 2	
+            return binarySearch(A, bound // 2, min(bound, len(A) - 1), x)
+        return exputil(arr,x)
 
     def show():
         print("""
@@ -632,43 +628,51 @@ Step 3 − It then performs a binary search by slicing the list; arr[:4]
 
 class ternary:
 
-    def search(self, arr, x, l, r):
-        if (r >= l):
-            mid1 = l + (r - l)//3
-            mid2 = mid1 + (r - l)//3
-
-            if arr[mid1] == x:
-                return mid1
-
-            if arr[mid2] == x:
-                return mid2
-
-            if arr[mid1] > x:
-                return self.search(arr, x, l, mid1-1)
-
-            if arr[mid2] < x:
-                return self.search(arr, x, mid2+1, r)
-
-            return self.search(arr, x, mid1+1, mid2-1)
-
-        return "element not found"
+    def search(L, key):
+        left = 0
+        right = len(L) - 1
+        while left <= right:
+            ind1 = left
+            ind2 = left + (right - left) // 3
+            ind3 = left + 2 * (right - left) // 3
+            if key == L[left]:
+                return left
+            elif key == L[right]:
+                return right
+            elif key < L[left] or key > L[right]:
+                return 'element not found'
+            elif key <= L[ind2]:
+                right = ind2
+            elif key > L[ind2] and key <= L[ind3]:
+                left = ind2 + 1
+                right = ind3
+            else:
+                left = ind3 + 1
+        return
 
     def show():
         print("""
-def ternarySearch(arr, l, r, x):
-    if (r >= l):
-        mid1 = l + (r - l)//3
-        mid2 = mid1 + (r - l)//3
-        if arr[mid1] == x:
-            return mid1
-        if arr[mid2] == x:
-            return mid2
-        if arr[mid1] > x:
-            return ternarySearch(arr, l, mid1-1, x)
-        if arr[mid2] < x:
-            return ternarySearch(arr, mid2+1, r, x)
-        return ternarySearch(arr, mid1+1, mid2-1, x)
-    return "element not found" """)
+def ternarysearch(L, key):
+    left = 0
+    right = len(L) - 1
+    while left <= right:
+        ind1 = left
+        ind2 = left + (right - left) // 3
+        ind3 = left + 2 * (right - left) // 3
+        if key == L[left]:
+            return left
+        elif key == L[right]:
+            return right
+        elif key < L[left] or key > L[right]:
+            return 'element not found'
+        elif key <= L[ind2]:
+            right = ind2
+        elif key > L[ind2] and key <= L[ind3]:
+            left = ind2 + 1
+            right = ind3
+        else:
+            left = ind3 + 1
+    return """)
 
     def info():
         print("""
@@ -830,33 +834,33 @@ Step 5 - Similarly, place every unsorted element at its correct position.
 
 
 class merge:
-
-    def sort(self, arr):
-        if len(arr) > 1:
-            mid = len(arr)//2
-            L = arr[:mid]
-            R = arr[mid:]
-            self.sort(L)
-            self.sort(R)
-            i = j = k = 0
-            while i < len(L) and j < len(R):
-                if L[i] < R[j]:
+    def sort(arr):
+        def sortutil(arr):
+            if len(arr) > 1:
+                mid = len(arr)//2
+                L = arr[:mid]
+                R = arr[mid:]
+                sortutil(L)
+                sortutil(R)
+                i = j = k = 0
+                while i < len(L) and j < len(R):
+                    if L[i] < R[j]:
+                        arr[k] = L[i]
+                        i += 1
+                    else:
+                        arr[k] = R[j]
+                        j += 1
+                    k += 1
+                while i < len(L):
                     arr[k] = L[i]
                     i += 1
-                else:
+                    k += 1
+                while j < len(R):
                     arr[k] = R[j]
                     j += 1
-                k += 1
-            while i < len(L):
-                arr[k] = L[i]
-                i += 1
-                k += 1
-            while j < len(R):
-                arr[k] = R[j]
-                j += 1
-                k += 1
-        return arr
-
+                    k += 1
+            return arr
+        return sortutil(arr)
     def show():
         print("""
 def mergesort(arr):
@@ -966,30 +970,31 @@ Sorry buddy !, heap sort is too complex to explain in step wise without images
 
 
 class quick:
-    def sort(self, start, end, array):
-        ''''
-        :param int start: array starting i.e 0
-        :param int end: array ending i.e len(arr)-1
-        :param int array: pass the array
-         '''
-        def partition(start, end, array):
-            pivot_index = start
-            pivot = array[pivot_index]
-            while start < end:
-                while start < len(array) and array[start] <= pivot:
-                    start += 1
-                while array[end] > pivot:
-                    end -= 1
-                if(start < end):
-                    array[start], array[end] = array[end], array[start]
-            array[end], array[pivot_index] = array[pivot_index], array[end]
-            return end
-        if (start < end):
-            p = partition(start, end, array)
-            self.sort(start, p - 1, array)
-            self.sort(p + 1, end, array)
-        return array
-
+    def sort(start, end, array):
+        def sortutil(start, end, array):
+            ''''
+            :param int start: array starting i.e 0
+            :param int end: array ending i.e len(arr)-1
+            :param int array: pass the array
+            '''
+            def partition(start, end, array):
+                pivot_index = start
+                pivot = array[pivot_index]
+                while start < end:
+                    while start < len(array) and array[start] <= pivot:
+                        start += 1
+                    while array[end] > pivot:
+                        end -= 1
+                    if(start < end):
+                        array[start], array[end] = array[end], array[start]
+                array[end], array[pivot_index] = array[pivot_index], array[end]
+                return end
+            if (start < end):
+                p = partition(start, end, array)
+                sortutil(start, p - 1, array)
+                sortutil(p + 1, end, array)
+            return array
+        return sortutil(start, end, array)
     def show():
         print("""
 def quicksort(self,start, end, array):
@@ -1248,7 +1253,7 @@ class bucket:
 
     def show():
         print("""
-def sort(input_list):
+def bucketsort(input_list):
     def insertion_sort(bucket):
         for i in range (1, len (bucket)):
             var = bucket[i]
