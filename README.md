@@ -268,4 +268,96 @@ print(my_graph.findAP())
 ```
 ## Pattern Functions :
 
+The following function uses Rabin-Karp algorithm which is an algorithm used for searching/matching patterns in the text using a hash function. Unlike Naive string matching algorithm, it does not travel through every character in the initial phase rather it filters the characters that do not match and then performs the comparison.
+
+| Syntax                    | Operation                                          |
+|---------------------------|----------------------------------------------------|
+| pattern.isthere(a).inn(b) | Returns true if string a is present in string b    |
+| pattern.whereis(a).inn(b) | Returns the index position of string a in string b |
+
+### Example:
+```python
+import rapidkode as rk
+
+a = 'sasi'
+b = 'satyasasivatsal'
+
+print(rk.isthere(a).inn(b))
+print(rk.whereis(a).inn(b))
+```
+### Output:
+```python
+True
+
+4
+```
+## Linkedlist Functions:
+
+| **Operation**             | **Syntax**                                       |
+|-----------------------|----------------------------------------------|
+| .ins_beg(node)        | Inserts a new node at beginning              |
+| .ins_end(node)        | Inserts a new node at the end                |
+| .ins_after(pos,node)  | Inserts a new node after the node specified  |
+| .ins_before(pos,node) | Inserts a new node before the specified node |
+| .del_node(node) | Deletes the specified node |
+| .return_as_list() | Returns LinkedList as python List |
+
+### Example:
+```python
+import rapidkode as rk
+
+my_list = rk.linkedlist()
+
+my_list.head = rk.node('a')
+
+s1 = rk.node('b')
+s2 = rk.node('c')
+s3 = rk.node('d')
+s4 = rk.node('e')
+s5 = rk.node('f')
+s6 = rk.node('g')
+
+my_list.head.next = s1
+s1.next =  s2
+s2.next =  s3
+s3.next =  s4
+s4.next =  s5
+s5.next =  s6
+
+print(my_list)
+```
+### Output :
+```
+a -> b -> c -> d -> e -> f -> g -> None
+```
+### Example -2 :
+```python
+# insertion at beginning
+my_list.ins_beg(rk.node('A'))
+
+# insertion at end
+my_list.ins_end(rk.node('G'))
+
+# insertion at positiom
+my_list.ins_after('e',rk.node('E'))
+
+# insertion at position
+my_list.ins_before('c',rk.node('C'))
+
+# deletion of ndoe
+my_list.del_node('b')
+
+# returning as list
+my_listt = my_list.return_as_list()
+
+print(my_list)
+
+print(my_listt)
+```
+### Output :
+```
+A -> a -> C -> c -> d -> e -> E -> f -> g -> G -> None
+
+['A', 'a', 'C', 'c', 'd', 'e', 'E', 'f', 'g', 'G', 'None']
+```
                                                                                         
