@@ -266,6 +266,6 @@ print(my_graph.findAP())
 
 2
 ```
-
+## Pattern Functions :
 
                                                                                         
