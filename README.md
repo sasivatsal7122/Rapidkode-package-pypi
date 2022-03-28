@@ -1,6 +1,6 @@
 <h1 align='center'>RapidKode: get ir right the first time</h1>
 
-##### RapidKode is a Python package that provides fast, flexible, and expressive data structures,alogorithms designed to make working with both competitive programming and coding  easy and intuitive. It aims to be the fundamental high-level building block for competitive programming in Python.With RapidKode you can perform complex algorithms in less time, all the algorithms are optimized to their finest to reduce time complexity to make you stand out in the leader board. There is no more time wasting writing huge chucks of code and debugging them later, With RapidKode everything happens at your fingertips with just a single line of code. The aim of Rapidkode is to help beginners get started in competative programing, understand the importance of time and space. The motto of making Rapidkode is to 'Get it right the first time' instead of spending 10's of precious minutes on util functions.
+#### RapidKode is a Python package that provides fast, flexible, and expressive data structures,alogorithms designed to make working with both competitive programming and coding  easy and intuitive. It aims to be the fundamental high-level building block for competitive programming in Python.With RapidKode you can perform complex algorithms in less time, all the algorithms are optimized to their finest to reduce time complexity to make you stand out in the leader board. There is no more time wasting writing huge chucks of code and debugging them later, With RapidKode everything happens at your fingertips with just a single line of code. The aim of Rapidkode is to help beginners get started in competative programing, understand the importance of time and space. The motto of making Rapidkode is to 'Get it right the first time' instead of spending 10's of precious minutes on util functions.
 
 # Available Functions :
 
@@ -361,3 +361,96 @@ A -> a -> C -> c -> d -> e -> E -> f -> g -> G -> None
 ['A', 'a', 'C', 'c', 'd', 'e', 'E', 'f', 'g', 'G', 'None']
 ```
                                                                                         
+## Bit manipulation Fuctions:
+
+| **Syntax**               | **Operation**                              |
+|--------------------------|--------------------------------------------|
+| bits.toggle_bits(x)      | Toggles the set bits and non set bits      |
+| bits.convert_to_bin(x)   | Converts a given number into binary        |
+| bits.counsetbits(x)      | Returns the no.of set bits in a dec number |
+| bits.rotate_byleft(x,d)  | Rotates the bits to left by d times        |
+| bits.rotate_byright(x,d) | Rotates the bits to left by d times        |
+| bits.countflips(x,y)     | Returns the no.of flips to make x as y     |
+
+### Example:
+```python
+import rapidkode as rk
+
+var = rk.bits.toggle_bits(873652)
+print(var)
+
+var = rk.bits.convert_to_bin(873652)
+print(var)
+
+var = rk.bits.countsetbits(873652)
+print(var)
+
+var = rk.bits.rotate_byleft(873652,4)
+print(var)
+
+var = rk.bits.rotate_byright(873652,4)
+print(var)
+
+var = rk.bits.countflips(8934756,873652)
+print(var)
+```
+
+### Output:
+```
+960632
+
+11010101010010110100
+
+8474306
+
+13978432
+
+54603
+
+7
+```
+
+## Other misc Functions:
+| **Syntax**                   | **Operation**                                           |
+|------------------------------|---------------------------------------------------------|
+| .showsieves()                | Prints Sieves code for finding prime number in terminal |
+| getprimefactors.fornum(x)    | Returns a list of prime factors for given number        |
+| findgcdof(x,y)               | Returns GCD of the given numbers                        |
+| findinversions.forr(arr)     | Returns how close the array is from being sorted        |
+| catlan_numbers.getelement(x) | Returns the x'th Catlan Number                          |
+| catlan_numbers.gen(x)        | Returns a list of first x Catlan_numbers                |
+
+### Example:
+```python
+import rapidkode as rk
+
+var = rk.getprimefactors.fornum(6754)
+print(var)
+
+var = rk.findgcdof(97345435,8764897)
+print(var)
+
+var = rk.findinversions.forr([1, 20, 6, 4, 5])
+print(var)
+
+var = rk.catlan_numbers.getelement(15)
+print(var)
+
+var = rk.catlan_numbers.gen(28)
+print(var)
+```
+
+### Output:
+```
+[2, 11, 307.0]
+
+1
+
+5
+
+9694845.0
+
+[1.0, 1.0, 2.0, 5.0, 14.0, 42.0, 132.0, 429.0, 1430.0, 4862.0, 16796.0, 58786.0, 208012.0, 742900.0, 2674440.0, 9694845.0, 35357670.0, 129644790.0, 477638700.0, 1767263190.0, 6564120420.0, 24466267020.0, 91482563640.0, 343059613650.0, 1289904147324.0, 4861946401452.0, 18367353072152.0, 69533550916004.0]
+```
+
+
