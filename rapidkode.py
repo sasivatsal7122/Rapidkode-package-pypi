@@ -1824,7 +1824,7 @@ class findinversions:
             insort(x, i)  
         return result
 
-class catlan_mumbers:
+class catlan_numbers:
     def getelement(x):
         def catalan(n):
             def binomialCoefficient(n, k):     
@@ -1928,8 +1928,7 @@ class bits:
             b>>=1
         return flips
     
-
-
+''' Linked list '''
 class node:
     def __init__(self, data):
         self.data = data
