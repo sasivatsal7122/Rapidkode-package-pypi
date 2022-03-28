@@ -2,6 +2,13 @@
 
 #### RapidKode is a Python package that provides fast, flexible, and expressive data structures,alogorithms designed to make working with both competitive programming and coding  easy and intuitive. It aims to be the fundamental high-level building block for competitive programming in Python.With RapidKode you can perform complex algorithms in less time, all the algorithms are optimized to their finest to reduce time complexity to make you stand out in the leader board. There is no more time wasting writing huge chucks of code and debugging them later, With RapidKode everything happens at your fingertips with just a single line of code. The aim of Rapidkode is to help beginners get started in competative programing, understand the importance of time and space. The motto of making Rapidkode is to 'Get it right the first time' instead of spending 10's of precious minutes on util functions.
 
+# Installation:
+
+- ### Install from the official pypi website -> <a href=''>Click Here</a>
+or 
+```python
+$ pip install rapidkode
+```
 # Available Functions :
 
 ## Number functions :
