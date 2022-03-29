@@ -84,14 +84,19 @@ import rapidkode as rk
 
 converted_num_1 = rk.convert(2013,'dec').to('bin')
 print(converted_num_1)
+
 converted_num_2 = rk.convert(11111011101,'bin').to('hex')
 print(converted_num_2)
+
 converted_num_3 = rk.convert('7dd','hex').to('dec')
 print(converted_num_3)
+
 converted_num_4 = rk.convert(5634,'oct').to('dec')
 print(converted_num_4)
+
 converted_num_5 = rk.convert(2972,'hex').to('oct')
 print(converted_num_5)
+
 converted_num_6 = rk.convert(24562,'oct').to('bin')
 print(converted_num_6)
 ```
