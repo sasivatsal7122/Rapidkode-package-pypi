@@ -17,13 +17,13 @@ $ pip install rapidkode
 | **syntax**                     | **operation**                                            
 |:------------------------------:|:--------------------------------------------------------:
 | numbers.gen_sparsenum_upto(x)  | generates sparse number upto the given range             
-| number.gen_sparsenum_upto(x)   | Returns the succeding sparse number for the given number
-| number.checkprime(x)           | Returns True if number is prime                         
+| numbers.get_sparsenum_after(n)  | Returns the succeding sparse number for the given number
+| numbers.checkprime(x)           | Returns True if number is prime                         
 | numbers.getprimes.generate(x)  | Returns first x prime numbers                           
 | numbers.getprimes.upto(x)      | Returns prime numbers upto given range                   
 | numbers.getprimes.inrange(x,y) | Returns prime numbers in the given range                
 | numbers.fib.getelement(x)      | Returns x'th fibonacci number                            
-| number.fib.generate(x)         | Returns first x fibonacci numbers           
+| numbers.fib.generate(x)         | Returns first x fibonacci numbers           
 
 ## Number System - Conversion functions:
 | **Syntax**                     | **Operation**                          
