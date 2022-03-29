@@ -14,7 +14,7 @@ classifiers = [
  
 setup(
   name='rapidkode',
-  version='1.0.0',
+  version='1.0.6',
   description='a powerful coding utility library',
   long_description=long_description,
   long_description_content_type="text/markdown",
@@ -25,5 +25,5 @@ setup(
   classifiers=classifiers,
   keywords='rapidkode',
   packages=['rapidkode'],
-  install_requires=['math','heapq','random','collections','bisect','time','sys','unicodedata','re'],
+  install_requires=[],
 )
