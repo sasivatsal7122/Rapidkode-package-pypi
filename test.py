@@ -1,16 +1,22 @@
 import rapidkode as rk
 
-var = rk.getprimefactors.fornum(6754)
-print(var)
+var = rk.numbers.gen_sparsenum_upto(100)
+print(var)	
 
-var = rk.findgcdof(97345435,8764897)
-print(var)
+var = rk.numbers.get_sparsenum_after(3289)		
+print(var)	
 
-var = rk.findinversions.forr([1, 20, 6, 4, 5])
-print(var)
+var = rk.numbers.checkprime(8364)	
+print(var)	
 
-var = rk.catlan_numbers.getelement(15)
-print(var)
+var = rk.numbers.getprimes.generate(100)	
+print(var)	
 
-var = rk.catlan_numbers.gen(28)
+var = rk.numbers.getprimes.inrange(100,500)	
+print(var)	
+
+var = rk.numbers.fib.getelement(58)	
+print(var)	
+
+var = rk.numbers.fib.generate(25)	
 print(var)
