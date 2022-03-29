@@ -9,6 +9,8 @@ or
 ```python
 $ pip install rapidkode
 ```
+### For issues,bug reports and contributions visit the development repo --> <a href='https://github.com/sasivatsal7122/Rapidkode-package-pypi'>Click Here</a>
+
 # Available Functions :
 
 ## Number functions :
