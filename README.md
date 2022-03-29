@@ -464,6 +464,7 @@ print(var)
 - All contributions, bug reports, bug fixes, documentation improvements, enhancements, and ideas are welcome.
 - Raise an issue if you find any problem
 - If you like to contribute, fork the repo raise an issue before making a pull request, it will be easy for managing
+- Logo and header credits --> <a href='https://github.com/HarshaMalla'>M.Sri Harsha</a>❤️
 
 
 ## Happy Rapid Koding!! 
