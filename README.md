@@ -6,7 +6,7 @@
 
 # Installation:
 
-- ### Install from the official pypi website -> <a href='https://pypi.org/project/rapidkode/1.0.0/'>Click Here</a>
+- ### Install from the official pypi website -> <a href='https://pypi.org/project/rapidkode/'>Click Here</a>
 or 
 ```python
 $ pip install rapidkode
